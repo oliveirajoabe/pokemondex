@@ -1,0 +1,25 @@
+.header {
+    width: 99%;
+    position: fixed;
+    
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    align-items: center;
+    
+    background-color: #fff;
+
+    z-index: 1;
+
+    nav{
+        ul{
+            display: flex;
+            li{
+                margin-left: 10px;
+            }
+            :last-child{
+                margin-right: 10px;
+            }
+        }
+    }
+}

@@ -1,0 +1,56 @@
+.cardContainer {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+
+    align-items: center;
+    flex-basis: 100%;
+
+    .card{
+        
+        display: grid;
+        grid-template-columns: auto auto auto auto;
+
+        li {
+
+            text-align: center;
+            border: 2px solid #000000;
+            border-radius: 20px;
+            background-color: #faebd7;
+            margin: 20px 25px;
+
+            padding: 10px;
+
+            h2 {
+                text-align: center;
+                text-transform: uppercase;
+            }
+
+            img {
+                width: 20vh
+            }
+            &:hover{
+                cursor: pointer;
+                opacity: 0.80;
+                -webkit-box-shadow: 4px 4px 22px 5px rgba(0,0,0,0.78);
+                -moz-box-shadow: 4px 4px 22px 5px rgba(0,0,0,0.78);
+                box-shadow: 4px 4px 22px 5px rgba(0,0,0,0.78);
+            }
+        }
+    }
+}
+
+.pagination{
+    display: flex;
+    justify-content: center;
+    .paginationArea {
+        display: flex;
+    }
+    .page{
+        // margin-left: 15px;
+        cursor: pointer;
+        border: 1px solid rgb(255, 0, 0);
+        padding: 5px;
+    }
+}
