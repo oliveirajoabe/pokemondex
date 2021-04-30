@@ -10,7 +10,7 @@
     .card{
         
         display: grid;
-        grid-template-columns: auto auto auto auto;
+        grid-template-columns: 40vh;
 
         li {
 
@@ -28,7 +28,7 @@
             }
 
             img {
-                width: 20vh
+                width: 15vh
             }
             &:hover{
                 cursor: pointer;
@@ -48,7 +48,7 @@
         display: flex;
     }
     .page{
-        margin-left: 20px;
+        margin: 20px 25px;
         cursor: pointer;
         border: 1px solid #000000;
         background-color: #faebd7;
