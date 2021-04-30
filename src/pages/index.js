@@ -1,4 +1,6 @@
 import { useEffect, useState } from 'react';
+import {FcNext,FcPrevious} from 'react-icons/fc';
+
 import { api } from '../services/api';
 import styles from './home.module.scss';
 
@@ -52,13 +54,13 @@ export default function Home() {
       </div>
       <div className={styles.pagination}>
         <div className={styles.paginationArea}>
-          {currentPage > 0 && 
-            <div className={styles.page} onClick={()=>setCurrentPage(currentPage-21)}>Previous</div>
-          }
+          {/* {currentPage > 0 &&  */}
+            <div className={styles.page} onClick={()=>setCurrentPage(currentPage-21)} ><FcPrevious/></div>
+          {/* } */}
           
-          {currentPage < pages.length &&
-            <div className={styles.page} onClick={()=>setCurrentPage(currentPage+21)}>Next</div>
-          }
+          {/* {currentPage < pages.length && */}
+            <div className={styles.page} onClick={()=>setCurrentPage(currentPage+21)}><FcNext/></div>
+          {/* } */}
         </div>
       </div>
     </>
