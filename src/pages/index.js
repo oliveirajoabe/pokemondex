@@ -56,10 +56,6 @@ export default function Home() {
             <div className={styles.page} onClick={()=>setCurrentPage(currentPage-21)}>Previous</div>
           }
           
-          {pages.map((page, index) => (            
-            <div className={styles.page} key={index} onClick={()=>setCurrentPage(page)}>{page}</div>
-          ))}
-          
           {currentPage < pages.length &&
             <div className={styles.page} onClick={()=>setCurrentPage(currentPage+21)}>Next</div>
           }
