@@ -1,4 +1,3 @@
-import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import {FcNext,FcPrevious} from 'react-icons/fc';
 
@@ -9,6 +8,8 @@ import styles from './home.module.scss';
 export default function Home() {
   const [pokemons, setPokemons] = useState([]);
   const [pageAtual, setPageAtual] = useState(0);
+  const [pokemonStatus, setPokemonStatus] = useState([]);
+  const [pokemonId, setPokemonId] = useState(1);
 
   useEffect(()=>{
     async function loadPokemon() {
@@ -19,11 +20,17 @@ export default function Home() {
         }
       });
       setPokemons(data.results);
-    }
+    };
+    async function uniquePokemon() {
+      const { data } = await api.get(`/pokemon/${pokemonId}`);
+      setPokemonStatus(data.stats);
+    };
+
+    uniquePokemon();
     loadPokemon();
-  }, [pageAtual]);
 
-
+  }, [pageAtual, pokemonId]);
+  
   const id = pokemons.map((item)=>{
     const str =  item.url;
     const url = str.split("/");
@@ -32,18 +39,28 @@ export default function Home() {
 
   return (
     <>
-      <div className={styles.cardContainer}>    
+      <div className={styles.flipCard}>    
         {pokemons.map((item, index) => {
           return (
-            <ul className={styles.card} key={index}>
-              <li>
+            <div className={styles.flipCardInner} key={index} onMouseOver={()=>setPokemonId(id[index])}>
+              <div className={styles.flipCardFront}>
                 <img width="80" src={`https://pokeres.bastionbot.org/images/pokemon/${id[index]}.png`}/>
                 <h2>{item.name}</h2>
-              </li>
-            </ul>
+              </div>
+              <div className={styles.flipCardBack} >
+                {pokemonStatus.map((item, index) => (
+                  <div className={styles.status} key={index}>
+                    <p>{item.stat.name}</p>
+                    <p>{item.base_stat}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
           )
         })}
       </div>
+
+      
       <div className={styles.pagination}>
         <div className={styles.paginationArea}>
             <div className={styles.page} onClick={()=>setPageAtual(pageAtual-12)} disabled><FcPrevious/></div>
