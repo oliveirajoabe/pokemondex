@@ -14,7 +14,6 @@ export default function Home() {
   const [loading, setLoading] = useState(true);
 
   useEffect(()=>{
-    
     setTimeout(()=>{
       async function loadPokemon() {
         const {data} = await api.get("/pokemon", {
@@ -27,14 +26,13 @@ export default function Home() {
         setPokemons(data.results);
       };
       loadPokemon();
-    }, 3000);
+    }, 1000);
       
     async function uniquePokemon() {
       const { data } = await api.get(`/pokemon/${pokemonId}`);
       setPokemonStatus(data.stats);
     };
     uniquePokemon();
-    
   }, [pageAtual, pokemonId]);
   
   const id = pokemons.map((item)=>{
@@ -42,7 +40,7 @@ export default function Home() {
     const url = str.split("/");
     return url[6];
   });
-
+  
   return (
     <>
       {loading && <Skeleton/>}
@@ -66,17 +64,15 @@ export default function Home() {
               </div>
             )
           })}
+          <div className={styles.pagination}>
+            <div className={styles.paginationArea}>
+                <div className={styles.page} onClick={()=>{setLoading(true); setPageAtual(pageAtual-12)}} disabled><FcPrevious/></div>
+              
+              <div className={styles.page} onClick={()=>{setLoading(true); setPageAtual(pageAtual+12)}}><FcNext/></div>
+            </div>
+          </div>
         </div>
-      }
-
-      
-      <div className={styles.pagination}>
-        <div className={styles.paginationArea}>
-            <div className={styles.page} onClick={()=>{setLoading(true); setPageAtual(pageAtual-12)}} disabled><FcPrevious/></div>
-          
-          <div className={styles.page} onClick={()=>{setLoading(true); setPageAtual(pageAtual+12)}}><FcNext/></div>
-        </div>
-      </div>
+      }     
     </>
   )
 }
