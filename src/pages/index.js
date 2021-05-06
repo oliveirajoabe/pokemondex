@@ -45,34 +45,36 @@ export default function Home() {
     <>
       {loading && <Skeleton/>}
       {!loading &&
-        <div className={styles.flipCard}>    
-          {pokemons.map((item, index) => {
-            return (
-              <div className={styles.flipCardInner} key={index} onMouseOver={()=>setPokemonId(id[index])}>
-                <div className={styles.flipCardFront}>
-                  <img width="80" src={`https://pokeres.bastionbot.org/images/pokemon/${id[index]}.png`}/>
-                  <h2>{item.name}</h2>
+        <>
+          <div className={styles.flipCard}>    
+            {pokemons.map((item, index) => {
+              return (
+                <div className={styles.flipCardInner} key={index} onMouseOver={()=>setPokemonId(id[index])}>
+                  <div className={styles.flipCardFront}>
+                    <img width="80" src={`https://pokeres.bastionbot.org/images/pokemon/${id[index]}.png`}/>
+                    <h2>{item.name}</h2>
+                  </div>
+                  <div className={styles.flipCardBack} >
+                    {pokemonStatus.map((item, index) => (
+                      <div className={styles.status} key={index}>
+                        <p>{item.stat.name}</p>
+                        <p>{item.base_stat}</p>
+                      </div>
+                    ))}
+                  </div>
                 </div>
-                <div className={styles.flipCardBack} >
-                  {pokemonStatus.map((item, index) => (
-                    <div className={styles.status} key={index}>
-                      <p>{item.stat.name}</p>
-                      <p>{item.base_stat}</p>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            )
-          })}
+              )
+            })}
+          </div>
           <div className={styles.pagination}>
             <div className={styles.paginationArea}>
-                <div className={styles.page} onClick={()=>{setLoading(true); setPageAtual(pageAtual-12)}} disabled><FcPrevious/></div>
+              <div className={styles.page} onClick={()=>{setLoading(true); setPageAtual(pageAtual-12)}} disabled><FcPrevious/></div>
               
               <div className={styles.page} onClick={()=>{setLoading(true); setPageAtual(pageAtual+12)}}><FcNext/></div>
             </div>
           </div>
-        </div>
-      }     
+        </>
+      }
     </>
   )
 }
