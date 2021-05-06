@@ -14,7 +14,7 @@ export default function Home() {
   const [loading, setLoading] = useState(true);
 
   useEffect(()=>{
-    setTimeout(()=>{
+    
       async function loadPokemon() {
         const {data} = await api.get("/pokemon", {
           params: {
@@ -22,11 +22,10 @@ export default function Home() {
             limit:12
           }
         });
-        setLoading(false);
         setPokemons(data.results);
+        setLoading(false);
       };
       loadPokemon();
-    }, 1000);
       
     async function uniquePokemon() {
       const { data } = await api.get(`/pokemon/${pokemonId}`);
