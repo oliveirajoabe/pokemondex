@@ -9,7 +9,8 @@ function ComponentSkeleton() {
             <div className={styles.cardContainer}>
                 {Array(12).fill().map((item, index)=>(
                     <div className={styles.cardContent} key={index}>    
-                        <Skeleton height={195} width={387} />
+                        {/* <Skeleton height={195} width={387} /> */}
+                        <Skeleton height={195} width={`100%`} />
                     </div>
                 ))}
             </div>
