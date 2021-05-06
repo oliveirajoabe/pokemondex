@@ -14,6 +14,7 @@ export default function Home() {
   const [loading, setLoading] = useState(true);
 
   useEffect(()=>{
+    
     setTimeout(()=>{
       async function loadPokemon() {
         const {data} = await api.get("/pokemon", {
@@ -22,17 +23,18 @@ export default function Home() {
             limit:12
           }
         });
+        setLoading(false);
         setPokemons(data.results);
       };
-      setLoading(false);
       loadPokemon();
-    }, 3000)
-    
+    }, 3000);
+      
     async function uniquePokemon() {
       const { data } = await api.get(`/pokemon/${pokemonId}`);
       setPokemonStatus(data.stats);
     };
     uniquePokemon();
+    
   }, [pageAtual, pokemonId]);
   
   const id = pokemons.map((item)=>{
