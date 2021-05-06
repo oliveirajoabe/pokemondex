@@ -8,10 +8,13 @@
         grid-template-columns: 40vh;
 
         height: 100%;
-
         margin: 20px 15px;
 
-        border-radius: 20px;
+        
+        .card{
+            border-radius: 20px;
+            border: 2px solid #000000;
+        }
     }
 }
 
@@ -22,6 +25,7 @@
         display: flex;
     }
     .page{
+        border: 1px solid #000000;
         margin: 20px 25px;
         border-radius: 5px;
         margin-bottom: 20px;

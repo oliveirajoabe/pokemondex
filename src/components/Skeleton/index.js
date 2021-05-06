@@ -10,15 +10,15 @@ function ComponentSkeleton() {
                 {Array(12).fill().map((item, index)=>(
                     <div className={styles.cardContent} key={index}>    
                         {/* <Skeleton height={195} width={387} /> */}
-                        <Skeleton height={195} width={`100%`} />
+                        <Skeleton className={styles.card} height={195} width={`100%`} />
                     </div>
                 ))}
             </div>
             <div className={styles.pagination}>
                 <div className={styles.paginationArea}>
-                    <Skeleton className={styles.page} height={20} width={20} />
+                    <Skeleton className={styles.page} height={20} width={16} />
                     
-                    <Skeleton className={styles.page} height={20} width={20} />
+                    <Skeleton className={styles.page} height={20} width={16} />
                 </div>
             </div>
         </>
