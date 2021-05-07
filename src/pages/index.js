@@ -14,6 +14,10 @@ export default function Home() {
   const [loading, setLoading] = useState(true);
 
   useEffect(()=>{
+<<<<<<< HEAD
+=======
+
+>>>>>>> homolog
       async function loadPokemon() {
         const {data} = await api.get("/pokemon", {
           params: {
@@ -55,8 +59,8 @@ export default function Home() {
                   <div className={styles.flipCardBack} >
                     {pokemonStatus.map((item, index) => (
                       <div className={styles.status} key={index}>
-                        <p>{item.stat.name}</p>
-                        <p>{item.base_stat}</p>
+                        <p>{item.stat.name}:</p>
+                        {/* <p>{item.base_stat}</p> */}
                       </div>
                     ))}
                   </div>
