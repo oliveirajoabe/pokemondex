@@ -2,18 +2,24 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+
+    margin-top: 25px;
     
     .cardContent{
         display: grid;
-        grid-template-columns: 40vh;
+        grid-column: 1;
+        grid-row: 1;
 
-        height: 100%;
+        width: 400px;
+        height: 207px;
+
         margin: 20px 15px;
 
-        
+        transition: transform 0.8s;
+        transform-style: preserve-3d;
+
         .card{
             border-radius: 20px;
-            border: 2px solid #000000;
         }
     }
 }
