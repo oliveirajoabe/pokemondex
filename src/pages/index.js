@@ -14,10 +14,6 @@ export default function Home() {
   const [loading, setLoading] = useState(true);
 
   useEffect(()=>{
-<<<<<<< HEAD
-=======
-
->>>>>>> homolog
       async function loadPokemon() {
         const {data} = await api.get("/pokemon", {
           params: {

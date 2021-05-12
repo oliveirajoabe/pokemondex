@@ -53,6 +53,7 @@
                 &:first-child{
                     padding-top: 15px;
                 }
+                
                 p{
                     text-transform: capitalize;
                     font-size: 1.8vh;
@@ -66,11 +67,11 @@
     }
 
 }
-
 .flipCardInner:hover{
     transform: rotateY(180deg);
     cursor: pointer;
 }
+
 
 .pagination{
     display: flex;
