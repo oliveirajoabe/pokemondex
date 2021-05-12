@@ -2,9 +2,10 @@ import { useEffect, useState } from 'react';
 import {FcNext,FcPrevious} from 'react-icons/fc';
 
 import { api } from '../services/api';
-import styles from './home.module.scss';
 
+import styles from './home.module.scss';
 import Skeleton from '../components/Skeleton';
+import StatusBar from '../components/StatusBar';
 
 export default function Home() {
   const [pokemons, setPokemons] = useState([]);
@@ -45,22 +46,24 @@ export default function Home() {
       {loading && <Skeleton/>}
       {!loading &&
         <>
-          <div className={styles.flipCard}>    
+         <div className={styles.flipCard}>    
             {pokemons.map((item, index) => {
               return (
                 <div className={styles.flipCardInner} key={index} onMouseOver={()=>setPokemonId(id[index])}>
-                  <div className={styles.flipCardFront}>
-                    <img width="80" src={`https://pokeres.bastionbot.org/images/pokemon/${id[index]}.png`}/>
-                    <h2>{item.name}</h2>
-                  </div>
-                  <div className={styles.flipCardBack} >
-                    {pokemonStatus.map((item, index) => (
-                      <div className={styles.status} key={index}>
-                        <p>{item.stat.name}:</p>
-                        {/* <p>{item.base_stat}</p> */}
-                      </div>
-                    ))}
-                  </div>
+                    <div className={styles.flipCardFront}>
+                      <img width="80" src={`https://pokeres.bastionbot.org/images/pokemon/${id[index]}.png`}/>
+                      <h2>{item.name}</h2>
+                    </div>
+                    <div className={styles.flipCardBack} >
+                      <h2>{item.name}</h2>
+                      {pokemonStatus.map((item, index) => (
+                          <div className={styles.status} key={index}>
+                            <p className={styles.tituloStatus}>{item.stat.name}:</p>
+                            <StatusBar percentageBar={item.base_stat}/>
+                            <p className={styles.porcentageStatus}>{item.base_stat}</p>
+                          </div>
+                      ))}
+                    </div>
                 </div>
               )
             })}
