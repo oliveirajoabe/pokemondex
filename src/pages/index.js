@@ -45,27 +45,31 @@ export default function Home() {
       {loading && <Skeleton/>}
       {!loading &&
         <>
-         <div className={styles.flipCard}>    
-            {pokemons.map((item, index) => {
+          <div className={styles.card}>
+
+            {pokemons.map((item, index)=> {
               return (
-                <div className={styles.flipCardInner} key={index} onMouseOver={()=>setPokemonId(id[index])}>
-                    <div className={styles.flipCardFront}>
-                      <img width="80" src={`https://pokeres.bastionbot.org/images/pokemon/${id[index]}.png`}/>
-                      <h2>{item.name}</h2>
-                    </div>
-                    <div className={styles.flipCardBack} >
-                      <h2>{item.name}</h2>
-                      {pokemonStatus.map((item, index) => (
-                          <div className={styles.status} key={index}>
-                            <p className={styles.tituloStatus}>{item.stat.name}:</p>
-                            <StatusBar percentageBar={item.base_stat}/>
-                            <p className={styles.porcentageStatus}>{item.base_stat}</p>
-                          </div>
-                      ))}
-                    </div>
+                <div className={styles.flipCard} key={index}>    
+                  <div className={styles.flipCardInner} onMouseOver={()=>setPokemonId(id[index])}>
+                      <div className={styles.flipCardFront}>
+                        <img width="80" src={`https://pokeres.bastionbot.org/images/pokemon/${id[index]}.png`}/>
+                        <h2>{item.name}</h2>
+                      </div>
+                      <div className={styles.flipCardBack} >
+                        <h2>{item.name}</h2>
+                        {pokemonStatus.map((item, index) => (
+                            <div className={styles.status} key={index}>
+                              <p className={styles.tituloStatus}>{item.stat.name}:</p>
+                              <StatusBar percentageBar={item.base_stat}/>
+                              <p className={styles.porcentageStatus}>{item.base_stat}</p>
+                            </div>
+                        ))}
+                      </div>
+                  </div>
                 </div>
               )
             })}
+
           </div>
           <div className={styles.pagination}>
             <div className={styles.paginationArea}>
