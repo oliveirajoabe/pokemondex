@@ -1,0 +1,118 @@
+.pokemonArea {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 94px;
+    
+    .pokemonImgArea {
+        margin-right: 2%;
+        padding: 10px;
+        border-radius: 15px;
+        background-color: #22484d;
+        box-shadow: 5px 10px 5px 0 rgba(0,0,0,0.2);
+
+        img {
+            width: 400px;
+        }
+    }
+
+    .pokemonAreaSobre {
+        padding: 10px;
+        width: 70%;
+        border-radius: 15px;
+        background-color: #22484d;
+        box-shadow: 5px 10px 5px 0 rgba(0,0,0,0.2);    
+        
+        h1{
+            text-transform: uppercase;
+            text-align: center;
+            color: #ffffff;
+        }
+        
+        .pokemonTipo{
+            display: flex;
+            justify-content: center;
+            small {
+                color: #ffffff;
+                margin-right: 20px;
+                margin-left: 20px;
+                text-transform: uppercase;
+            }
+        }
+        
+        .areaStats {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 25px;
+            color: #ffffff;
+            
+            .tituloStats {
+                width: 250px;
+                p{
+                    display: flex;
+                    align-items: center;
+                    text-transform: capitalize;
+                    font-size: 20px;
+                }
+            }
+        }
+    }
+
+    .pokemonSobre {
+        border-radius: 15px;
+        padding: 0 20px;
+        margin-top: 2%;
+        border:1px solid black;
+        width: 93%;
+        height: 100px;
+    }
+}
+
+
+// media querys
+
+@media (max-width: 1580px){
+    .pokemonArea{
+        .pokemonImgArea{
+            display: flex;
+            align-items: center;
+            img{
+                width: 280px;
+            }
+        }
+        .pokemonAreaSobre{
+            padding-bottom: 10px;
+        }
+    }
+}
+
+@media (max-width: 1143px){
+    .pokemonArea{
+        .pokemonImgArea{
+            display: flex;
+            align-items: center;
+            img{
+                width: 200px;
+            }
+        }
+    }
+}
+@media (max-width: 930px){
+    .pokemonArea{
+        .pokemonImgArea{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            margin-right: 0;
+            img{
+                width: 200px;
+            }
+        }
+        .pokemonAreaSobre {
+            margin-top: 20px;
+            width: 100%;
+        }
+    }
+}

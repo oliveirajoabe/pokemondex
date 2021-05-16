@@ -25,7 +25,7 @@ function MyApp({ Component, pageProps }) {
       <div className={styles.wrapper}>
         <main>
           <Navbar/>
-          <Hero/>
+          {/* <Hero/> */}
           <Component {...pageProps} />
         </main>
       </div>

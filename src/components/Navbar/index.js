@@ -17,11 +17,6 @@ function Header (){
                         </Link>
                     </li>
                     <li>
-                        <Link href="#pokemon">
-                            Pokemon
-                        </Link>
-                    </li>
-                    <li>
                         <Link href="#login">
                             Login
                         </Link>

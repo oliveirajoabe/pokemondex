@@ -1,11 +1,13 @@
 import { useEffect, useState } from 'react';
 import {FcNext,FcPrevious} from 'react-icons/fc';
+import Link from 'next/link';
 
 import { api } from '../services/api';
 
 import styles from './home.module.scss';
 import Skeleton from '../components/Skeleton';
 import StatusBar from '../components/StatusBar';
+import Hero from '../components/Hero';
 
 export default function Home() {
   const [pokemons, setPokemons] = useState([]);
@@ -39,37 +41,38 @@ export default function Home() {
     const url = str.split("/");
     return url[6];
   });
-  
+
   return (
     <>
+      <Hero/>
       {loading && <Skeleton/>}
       {!loading &&
         <>
           <div className={styles.card}>
-
             {pokemons.map((item, index)=> {
               return (
-                <div className={styles.flipCard} key={index}>    
-                  <div className={styles.flipCardInner} onMouseOver={()=>setPokemonId(id[index])}>
-                      <div className={styles.flipCardFront}>
-                        <img width="80" src={`https://pokeres.bastionbot.org/images/pokemon/${id[index]}.png`}/>
-                        <h2>{item.name}</h2>
-                      </div>
-                      <div className={styles.flipCardBack} >
-                        <h2>{item.name}</h2>
-                        {pokemonStatus.map((item, index) => (
-                            <div className={styles.status} key={index}>
-                              <p className={styles.tituloStatus}>{item.stat.name}:</p>
-                              <StatusBar percentageBar={item.base_stat}/>
-                              <p className={styles.porcentageStatus}>{item.base_stat}</p>
-                            </div>
-                        ))}
-                      </div>
+                <Link href={`/pokemon/${item.name}`} key={index}>
+                  <div className={styles.flipCard} >    
+                    <div className={styles.flipCardInner} onMouseOver={()=>setPokemonId(id[index])}>
+                        <div className={styles.flipCardFront}>
+                          <img width="80" src={`https://pokeres.bastionbot.org/images/pokemon/${id[index]}.png`}/>
+                          <h2>{item.name}</h2>
+                        </div>
+                        <div className={styles.flipCardBack} >
+                          <h2>{item.name}</h2>
+                          {pokemonStatus.map((item, index) => (
+                              <div className={styles.status} key={index}>
+                                <p className={styles.tituloStatus}>{item.stat.name}:</p>
+                                <StatusBar percentageBar={item.base_stat}/>
+                                <p className={styles.porcentageStatus}>{item.base_stat}</p>
+                              </div>
+                          ))}
+                        </div>
+                    </div>
                   </div>
-                </div>
+                </Link>
               )
             })}
-
           </div>
           <div className={styles.pagination}>
             <div className={styles.paginationArea}>
