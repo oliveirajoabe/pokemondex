@@ -13,6 +13,8 @@ const progress = keyframes`
 `;
 
 const StatusBar = styled.div`
+    display:flex;
+    align-items:center;
     height: 100%;
     width: calc(${props=>props.percentagem}% / 3);
     background-color:#1bff06;

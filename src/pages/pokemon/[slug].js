@@ -50,8 +50,6 @@ export async function getStaticProps(ctx) {
         return item.effect_entries
     });
     
-    
-
     return {
         props: {
             pokemon,
@@ -62,14 +60,13 @@ export async function getStaticProps(ctx) {
 }
 
 export default function Pokemon({pokemon, abilities}) {
-    const habilidades = abilities.map((item)=>{
-        // retorna o index 1 pois é a linguagem "en"
-        return item[1];
+    const data = abilities.map((item)=>{
+        return item.filter((item)=>{
+            return item.language.name == "en"
+        })
     });
-    const efeito = habilidades.map((item)=>{
-        return item.effect
-    });
-    
+    const efeito = data.map((item)=>item[0].effect)
+
     return (
         <div className={styles.pokemonArea}>
             <div className={styles.pokemonImgArea}>
@@ -97,7 +94,7 @@ export default function Pokemon({pokemon, abilities}) {
             </div>
             <div className={styles.pokemonSobre}>
                 <div className={styles.pokemonAbilities}>
-                    <h1>Habilidades</h1>
+                    <h1>Skills</h1>
                     {pokemon.abilities.map((item, index)=>{
                         return (
                             <ul key={index}>
