@@ -76,8 +76,12 @@ export default function Home() {
           </div>
           <div className={styles.pagination}>
             <div className={styles.paginationArea}>
-              <div className={styles.page} onClick={()=>{setLoading(true); setPageAtual(pageAtual-12)}} disabled><FcPrevious/></div>
-              
+              {pageAtual <= 0 ?
+                <div className={styles.notPage}><FcPrevious/></div> :
+                <div className={styles.page} onClick={()=>{setLoading(true); setPageAtual(pageAtual-12)}}><FcPrevious/></div>
+              }
+
+              {pageAtual}
               <div className={styles.page} onClick={()=>{setLoading(true); setPageAtual(pageAtual+12)}}><FcNext/></div>
             </div>
           </div>
