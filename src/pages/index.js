@@ -81,7 +81,6 @@ export default function Home() {
                 <div className={styles.page} onClick={()=>{setLoading(true); setPageAtual(pageAtual-12)}}><FcPrevious/></div>
               }
 
-              {pageAtual}
               <div className={styles.page} onClick={()=>{setLoading(true); setPageAtual(pageAtual+12)}}><FcNext/></div>
             </div>
           </div>
