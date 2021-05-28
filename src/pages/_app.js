@@ -23,6 +23,8 @@ function MyApp({ Component, pageProps }) {
         <link rel="stylesheet" type="text/css" href="/nprogress.css" />
         <meta charset="UTF-8"/>
         <meta http-equiv="X-UA-Compatible" content="IE=edge"></meta>
+        <meta name="description" content="Site para listar pokemons da pokedex. Trazer mais sobre as habilidades de cada pokemon."/>
+        <meta name="description" content="Pokemondex"/>
       </Head>
       <div className={styles.wrapper}>
         <main>
