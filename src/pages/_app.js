@@ -21,11 +21,12 @@ function MyApp({ Component, pageProps }) {
       <Head>
         <title>Pokemondex</title>
         <link rel="stylesheet" type="text/css" href="/nprogress.css" />
+        <meta charset="UTF-8"/>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge"></meta>
       </Head>
       <div className={styles.wrapper}>
         <main>
           <Navbar/>
-          {/* <Hero/> */}
           <Component {...pageProps} />
         </main>
       </div>

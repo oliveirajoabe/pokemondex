@@ -54,7 +54,7 @@ export default function Home() {
                 <div className={styles.flipCard} key={index}>
                   <div className={styles.flipCardInner}>
                     <div className={styles.flipCardFront}>
-                      <img width="80" src={`https://pokeres.bastionbot.org/images/pokemon/${idImg[index]}.png`}/>
+                      <img width="80" alt={item.name} src={`https://pokeres.bastionbot.org/images/pokemon/${idImg[index]}.png`}/>
                         <h2>{item.name}</h2>
                     </div>
                     <div className={styles.flipCardBack}>
