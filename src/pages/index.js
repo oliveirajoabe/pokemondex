@@ -10,37 +10,37 @@ import StatusBar from '../components/StatusBar';
 import Hero from '../components/Hero';
 
 export default function Home() {
-  const [pokemons, setPokemons] = useState([]);
   const [pageAtual, setPageAtual] = useState(0);
   const [pokemonStatus, setPokemonStatus] = useState([]);
-  const [pokemonId, setPokemonId] = useState(1);
+  const [idImg, setIdImg] = useState(1);
   const [loading, setLoading] = useState(true);
 
-  useEffect(()=>{
-      async function loadPokemon() {
-        const {data} = await api.get("/pokemon", {
-          params: {
-            offset:pageAtual,
-            limit:12
-          }
-        });
-        setPokemons(data.results);
-        setLoading(false);
-      };
-      loadPokemon();
-      
-    async function uniquePokemon() {
-      const { data } = await api.get(`/pokemon/${pokemonId}`);
-      setPokemonStatus(data.stats);
-    };
-    uniquePokemon();
-  }, [pageAtual, pokemonId]);
-  
-  const id = pokemons.map((item)=>{
-    const str =  item.url;
-    const url = str.split("/");
-    return url[6];
-  });
+  useEffect(()=>{ 
+    (async function getPokemon() {
+      const { data } = await api.get("/pokemon", {
+        params: {
+          offset:pageAtual,
+          limit:12
+        }
+      });
+      const id = data.results.map((item) => {
+        const url = item.url;
+        const id = url.split("/");
+        return id[6];
+      });
+      getStatusPokemons(id);
+      setIdImg(id)
+    })();
+    async function getStatusPokemons(id) {
+      let array = []
+      for(let i=0; i<id.length; i++) {
+        const { data } = await api.get(`/pokemon/${id[i]}`);
+        array.push(data)
+      }
+      setPokemonStatus(array);
+      setLoading(false);
+    }
+  }, [pageAtual]);
 
   return (
     <>
@@ -49,38 +49,35 @@ export default function Home() {
       {!loading &&
         <>
           <div className={styles.card}>
-            {pokemons.map((item, index)=> {
-              return (
-                <Link href={`/pokemon/${item.name}`} key={index}>
-                  <div className={styles.flipCard} >    
-                    <div className={styles.flipCardInner} onMouseOver={()=>setPokemonId(id[index])}>
-                        <div className={styles.flipCardFront}>
-                          <img width="80" src={`https://pokeres.bastionbot.org/images/pokemon/${id[index]}.png`}/>
-                          <h2>{item.name}</h2>
-                        </div>
-                        <div className={styles.flipCardBack} >
-                          <h2>{item.name}</h2>
-                          {pokemonStatus.map((item, index) => (
-                              <div className={styles.status} key={index}>
-                                <p className={styles.tituloStatus}>{item.stat.name}:</p>
-                                <StatusBar percentageBar={item.base_stat}/>
-                                <p className={styles.porcentageStatus}>{item.base_stat}</p>
-                              </div>
-                          ))}
-                        </div>
+            {pokemonStatus.map((item, index) => (
+              <Link href={`/pokemon/${item.name}`} key={index}>
+                <div className={styles.flipCard} key={index}>
+                  <div className={styles.flipCardInner}>
+                    <div className={styles.flipCardFront}>
+                      <img width="80" src={`https://pokeres.bastionbot.org/images/pokemon/${idImg[index]}.png`}/>
+                        <h2>{item.name}</h2>
+                    </div>
+                    <div className={styles.flipCardBack}>
+                      <h2>{item.name}</h2>
+                      {item.stats.map((item, index)=>(
+                        <div className={styles.status} key={index}>
+                          <p className={styles.tituloStatus}>{item.stat.name}:</p>
+                          <StatusBar percentageBar={item.base_stat}/>
+                          <p className={styles.porcentageStatus}>{item.base_stat}</p>
+                        </div> 
+                      ))}
                     </div>
                   </div>
-                </Link>
-              )
-            })}
+                </div>
+              </Link>
+            ))}
           </div>
           <div className={styles.pagination}>
             <div className={styles.paginationArea}>
               {pageAtual <= 0 ?
                 <div className={styles.notPage}><FcPrevious/></div> :
                 <div className={styles.page} onClick={()=>{setLoading(true); setPageAtual(pageAtual-12)}}><FcPrevious/></div>
-              }
-              
+              }         
               <div className={styles.page} onClick={()=>{setLoading(true); setPageAtual(pageAtual+12)}}><FcNext/></div>
             </div>
           </div>
