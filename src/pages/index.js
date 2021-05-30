@@ -55,30 +55,30 @@ export default function Home() {
           <div className={styles.card}>
             {pokemonStatus.map((item, index) => (
               <div className={styles.flipCard} key={index}>
-                  <div className={styles.flipCardInner}>
-                    <div className={styles.flipCardFront}>
-                      <img width="80" alt={item.name} src={image[index]}/>
-                        <h2>{item.name}</h2>
-                    </div>
-                    <div className={styles.flipCardBack}>
+                <div className={styles.flipCardInner}>
+                  <div className={styles.flipCardFront}>
+                    <img width="80" alt={item.name} src={image[index]}/>
                       <h2>{item.name}</h2>
-                      {item.stats.map((item, index)=>(
-                        <div className={styles.status} key={index}>
-                          <p className={styles.tituloStatus}>{item.stat.name}:</p>
-                          <StatusBar percentageBar={item.base_stat}/>
-                          <p className={styles.porcentageStatus}>{item.base_stat}</p>
-                        </div> 
-                      ))}
-                      <Link href={`/pokemon/${item.name}`} key={index}>
-                        <div className={styles.btnLinkArea}>
-                          <div className={styles.btnLink}>
-                            Sobre
-                          </div>
+                  </div>
+                  <div className={styles.flipCardBack}>
+                    <h2>{item.name}</h2>
+                    {item.stats.map((item, index)=>(
+                      <div className={styles.status} key={index}>
+                        <p className={styles.tituloStatus}>{item.stat.name}:</p>
+                        <StatusBar percentageBar={item.base_stat}/>
+                        <p className={styles.porcentageStatus}>{item.base_stat}</p>
+                      </div> 
+                    ))}
+                    <Link href={`/pokemon/${item.name}`} key={index}>
+                      <div className={styles.btnLinkArea}>
+                        <div className={styles.btnLink}>
+                          Sobre
                         </div>
-                      </Link>
-                    </div>
+                      </div>
+                    </Link>
                   </div>
                 </div>
+              </div>
             ))}
           </div>
           <div className={styles.pagination}>
