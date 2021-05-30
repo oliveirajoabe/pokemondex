@@ -12,7 +12,7 @@ import Hero from '../components/Hero';
 export default function Home() {
   const [pageAtual, setPageAtual] = useState(0);
   const [pokemonStatus, setPokemonStatus] = useState([]);
-  const [idImg, setIdImg] = useState(1);
+  const [image, setImage] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(()=>{ 
@@ -29,18 +29,22 @@ export default function Home() {
         return id[6];
       });
       getStatusPokemons(id);
-      setIdImg(id)
     })();
     async function getStatusPokemons(id) {
-      let array = []
+      let array = [];
+      let arrayImg = [];
       for(let i=0; i<id.length; i++) {
         const { data } = await api.get(`/pokemon/${id[i]}`);
-        array.push(data)
+        const img = data.sprites.other["official-artwork"].front_default;
+        array.push(data);
+        arrayImg.push(img);
       }
       setPokemonStatus(array);
+      setImage(arrayImg);
       setLoading(false);
-    }
+    }    
   }, [pageAtual]);
+  
 
   return (
     <>
@@ -54,7 +58,7 @@ export default function Home() {
                 <div className={styles.flipCard} key={index}>
                   <div className={styles.flipCardInner}>
                     <div className={styles.flipCardFront}>
-                      <img width="80" alt={item.name} src={`https://pokeres.bastionbot.org/images/pokemon/${idImg[index]}.png`}/>
+                      <img width="80" alt={item.name} src={image[index]}/>
                         <h2>{item.name}</h2>
                     </div>
                     <div className={styles.flipCardBack}>
