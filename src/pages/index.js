@@ -54,8 +54,7 @@ export default function Home() {
         <>
           <div className={styles.card}>
             {pokemonStatus.map((item, index) => (
-              <Link href={`/pokemon/${item.name}`} key={index}>
-                <div className={styles.flipCard} key={index}>
+              <div className={styles.flipCard} key={index}>
                   <div className={styles.flipCardInner}>
                     <div className={styles.flipCardFront}>
                       <img width="80" alt={item.name} src={image[index]}/>
@@ -70,10 +69,16 @@ export default function Home() {
                           <p className={styles.porcentageStatus}>{item.base_stat}</p>
                         </div> 
                       ))}
+                      <Link href={`/pokemon/${item.name}`} key={index}>
+                        <div className={styles.btnLinkArea}>
+                          <div className={styles.btnLink}>
+                            Sobre
+                          </div>
+                        </div>
+                      </Link>
                     </div>
                   </div>
                 </div>
-              </Link>
             ))}
           </div>
           <div className={styles.pagination}>

@@ -51,7 +51,7 @@
                     text-transform: uppercase;
                     text-align: center;
                     padding-top: 15px;
-                    margin-bottom: 15px;
+                    margin-bottom: 5px;
                     color: #ffffff;
                 }
                 .status{
@@ -74,6 +74,26 @@
                         color: #ffffff;
                     }
                 }
+                .btnLinkArea{
+                    display:flex;
+                    align-items:center;
+                    justify-content: center;
+                    margin-left: auto;
+                    margin-right: auto;
+                    margin-top: 8px;
+                    width: 50%;
+                    height: 23px;
+                    background-color: #ffffff;
+                    border-radius: 15px;
+                    cursor: pointer;
+                    .btnLink {
+                        align-items: center;
+                        color: #22484d;
+                    }
+                    &:hover {
+                        opacity: 0.6;
+                    }
+                }
             }
         }   
         .flipCardFront, .flipCardBack {
@@ -88,7 +108,7 @@
 }
 .flipCard:hover .flipCardInner{
     transform: rotateY(180deg);
-    cursor: pointer;
+    
 }
 
 // ==========================
