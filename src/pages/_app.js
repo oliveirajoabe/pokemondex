@@ -1,9 +1,9 @@
+import React from 'react';
 import Router from 'next/router'
 import Head from 'next/head';
 import NProgress from 'nprogress';
 
-import Hero from '../components/Hero';
-import Navbar from '../components/Navbar'
+import Navbar from '../components/Navbar';
 
 import '../styles/globals.scss'
 import styles from '../styles/Home.module.scss';

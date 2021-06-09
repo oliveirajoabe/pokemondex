@@ -33,44 +33,45 @@ export async function getStaticProps(ctx) {
         moves: data.moves,
         abilities: data.abilities,
         stats: data.stats,
+        img: data.sprites.other["official-artwork"].front_default
     }
-    const idAbility  = pokemon.abilities.map((item)=>{
+    
+    // habilidades
+    const idAbility =  pokemon.abilities.map((item) => {
         const url = item.ability.url;
         const idAbility = url.split('/')
         return idAbility[6];
     });
-
-    let output = []
+    let output = [];
     for(let i=0; i<idAbility.length; i++){
-        
         const { data } = await api.get(`/ability/${idAbility[i]}`);
         output.push(data);
-    }    
+    } 
     const abilities = output.map((item)=>{
         return item.effect_entries
+    });
+    const filteredAbility = abilities.map((item)=>{
+        return item.filter((item)=>{
+            return item.language.name == "en";
+        })
     });
     
     return {
         props: {
             pokemon,
-            abilities
+            filteredAbility
         },
         revalidate: 60 * 60
     }
 }
 
-export default function Pokemon({pokemon, abilities}) {
-    const data = abilities.map((item)=>{
-        return item.filter((item)=>{
-            return item.language.name == "en"
-        })
-    });
-    const efeito = data.map((item)=>item[0].effect)
+export default function Pokemon({pokemon, filteredAbility}) {
+    const efeito = filteredAbility.map((item)=>item[0].effect);
 
     return (
         <div className={styles.pokemonArea}>
             <div className={styles.pokemonImgArea}>
-                <img src={`https://pokeres.bastionbot.org/images/pokemon/${pokemon.id}.png`}/>
+                <img src={pokemon.img}/>
             </div>
             <div className={styles.pokemonAreaSobre}>
                 <h1>{pokemon.name}</h1>

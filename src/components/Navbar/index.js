@@ -5,7 +5,7 @@ function Header (){
     return (
         <div className={styles.header}>
             <div>
-                <a href="#">
+                <a href="/">
                     <img width="110" height="50" src="/logo.png" alt="fonte-de-pokemon" border="0"/>
                 </a>
             </div>
@@ -17,7 +17,7 @@ function Header (){
                         </Link>
                     </li>
                     <li>
-                        <Link href="#login">
+                        <Link href="/login">
                             Login
                         </Link>
                     </li>
